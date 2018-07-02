@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OneOneNew</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="empty_str"></string>
+    <string name="commit_text">提交</string>
+
+    <string name="str_modify_user_basic_line_item_val_sex"><font color="#FF6C6C">请填写性别</font></string>
+    <string name="str_discover_page_last_item_type_2_text_2"><font color="#7E94BB">您也可以尝试</font><font color="#6667FD">调整筛选范围</font><font color="#7E94BB">或先去</font><font color="#6667FD">动态</font><font color="#7E94BB">里逛逛大家的生活状态</font></string>
+
+    <string name="str_empty_timeline_tip">还没有发过动态哟</string>
+    <string name="str_empty_timeline_tip1">还没有发过动态哟</string>
+    <string name="str_empty_timeline_tip2">还没有发过动态哟</string>
+</resources>

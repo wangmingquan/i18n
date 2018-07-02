@@ -1,0 +1,6 @@
+client/node_modules
+client/npm-debug.log
+client/.nuxt
+client/dist
+server/node_modules
+.DS_Store
