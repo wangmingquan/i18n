@@ -50,7 +50,10 @@ module.exports = async function (ctx, next) {
           }
           value = JSON.stringify(_value);
         }
-        let hasKeySelectData = {key};
+        let hasKeySelectData = {
+          key,
+          parent_id: null
+        };
         if (parent_id) {
           hasKeySelectData.parent_id = parseInt(parent_id);
         }
