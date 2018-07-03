@@ -164,8 +164,19 @@ export default {
       this.isEdit = true;
       this.isNew = false;
     },
-    showDetail (value) {
-      this.$alert(value, '语言详情', {
+    showDetail (data) {
+      let value = data.value;
+      let key = data.full_key;
+      let langs = JSON.parse(value);
+      let html = `<div>`;
+      html += `<p class="title">key: ${key.replace(/\./g, '_')}</p>`;
+      for (var i in langs) {
+        html += `<div style="border: 1px solid #ccc; padding: 10px; position: relative; margin: 15px 0;">`;
+        html +=`<span style="font-size: 16px; font-weight: bold; position: absolute; left 5px; top: -15px; background: #fff; padding: 0 5px;">${i}</span>`;
+        html += `<div>${langs[i].replace(/\n/g, '<br>')}</div></div>`
+      }
+      html += `</div>`
+      this.$alert(html, '语言详情', {
         dangerouslyUseHTMLString: true
       });
     },
@@ -180,12 +191,7 @@ export default {
         }
         {
           node.data.value
-          ? (<span class="value" title={node.data.value} on-click={ () => this.showDetail(node.data.value) } style="color:#39B54A"> 语言详情 </span>)
-          : null
-        }
-        {
-          node.data.value
-          ? (<span class="full_key" style="color: #E6A23C"> {node.data.full_key} </span>)
+          ? (<span class="value" title={node.data.value} on-click={ () => this.showDetail(node.data) } style="color:#39B54A"> 语言详情 </span>)
           : null
         }
         <span>
