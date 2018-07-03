@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios';
+
 export default {
   data () {
     let query = this.$route.query;
@@ -55,7 +57,10 @@ export default {
   },
   methods: {
     getAppInfo () {
-      this.$axios.get('/api/app/info?appname=' + this.app).then(res => {
+      if (!this.app) {
+        return;
+      }
+      axios.get('/api/app/info?appname=' + this.app).then(res => {
         if (res.status === 200 && res.data.status === 0) {
           this.info = res.data.data;
           // 每次新的APP都需要初始化语种的表单
@@ -77,7 +82,7 @@ export default {
       }
       if (node.level > 0) {
         let id = node.data._id || '';
-        this.$axios.get('/api/map/list', {
+        axios.get('/api/map/list', {
           params: {
             app: this.app,
             parent_id: id
@@ -120,7 +125,7 @@ export default {
         cancelButtonText: '取消',
         callback: action => {
           if (action === 'confirm') {
-            this.$axios.post('/api/map/delete', {id}).then(res => {
+            axios.post('/api/map/delete', {id}).then(res => {
               if (res.status === 200) {
                 if (res.data.status === 0) {
                   this.$notify({
@@ -236,7 +241,7 @@ export default {
     },
     updateKey (data) {
       data.id = this.id;
-      this.$axios.post('/api/map/edit', data).then(res => {
+      axios.post('/api/map/edit', data).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
             this.isEdit = false;
@@ -252,7 +257,7 @@ export default {
       }, console.log)
     },
     addKey (data) {
-      this.$axios.post('/api/map/add', data).then(res => {
+      axios.post('/api/map/add', data).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
             this.isEdit = false;

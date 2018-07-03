@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios';
+
 export default {
   data () {
     return {
@@ -68,7 +70,7 @@ export default {
       }
     },
     addNewSubmit (data) {
-      this.$axios.post('/api/app/add', data).then(res => {
+      axios.post('/api/app/add', data).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
             this.$store.dispatch('getApps');
@@ -78,7 +80,7 @@ export default {
       }, console.log)
     },
     updateSubmit (data) {
-      this.$axios.post('/api/app/edit', data).then(res => {
+      axios.post('/api/app/edit', data).then(res => {
         if (res.status === 200) {
           if (res.data.status === 0) {
             this.$store.dispatch('getApps');
@@ -94,7 +96,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$axios.post('/api/app/delete', {
+        axios.post('/api/app/delete', {
           appname
         }).then(res => {
           if (res.status === 200) {
