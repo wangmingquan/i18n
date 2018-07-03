@@ -34,14 +34,15 @@ module.exports = async function (ctx, next) {
   let lang = ctx.request.body.lang;
   let app = ctx.request.body.app;
   let type = ctx.request.body.type;
-  let file = ctx.req.files.file;
+  let file = ctx.request.files.file;
   let filepath = file.path;
   let knex = global.knex;
   let json = [];
   if (type === 'xml') {
     json = xml2json(filepath);
   } else if (type === 'json') {
-    let data = JSON.parse(fs.readFileSync(filepath, 'utf8'));
+    let data = fs.readFileSync(filepath, 'utf8');
+    data = JSON.parse(data);
     for (var i in data) {
       let item = {};
       json.push({

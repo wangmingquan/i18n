@@ -36,7 +36,14 @@ module.exports = async function (ctx, next) {
     if (type === 'json') {
       let json = [];
       for (var i in output_data) {
-        json.push(`\t"${i}": "${output_data[i]}"`)
+        let key = i;
+        let value = output_data[i];
+        console.log(`\t"${key}": "${value}"`)
+        value = value
+          .replace(/"'"/g, '\'')
+          .replace(/"'/g, '\\"')
+          .replace(/'"/g, '\\"');
+        json.push(`\t"${key}": "${value}"`);
       }
       json = `{
 ${json.join(',\n')}

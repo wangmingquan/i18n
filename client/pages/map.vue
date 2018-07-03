@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios';
-
 export default {
   data () {
     let query = this.$route.query;

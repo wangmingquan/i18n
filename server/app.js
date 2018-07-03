@@ -1,9 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const Knex = require('knex');
-const bodyParser = require('koa-bodyparser');
-// const koaBody = require('koa-body');
-const multer = require('koa-multer');
+const koaBody = require('koa-body');
 
 const conf = require('./conf');
 const routers = require('./routers');
@@ -18,8 +16,14 @@ app.knex = global.knex;
 routers(router);
 
 app
-  .use(multer({dest: './uploads/'}))
-  .use(bodyParser())
+  .use(koaBody({
+    multipart: true,
+    formidable: {
+      uploadDir: 'uploads',
+      keepExtensions: true,
+      maxFieldsSize: 2 * 1024 * 1024
+    }
+  }))
   .use(require('koa-bigpipe'))
   .use(router.routes())
   .use(router.allowedMethods())
