@@ -15,7 +15,7 @@ export default {
       parent_id: '',
       id: '',
       languages: {},
-      isEdit: false,
+      isEdit: true,
       isNew: true,
       node: null,
       activeName: 'web',
@@ -424,7 +424,7 @@ export default {
             <ul class="form-languages">
               <li v-for="(item, key) in languages" :key="key">
                 <span>{{langsMap[key]}}</span>
-                <el-input size="middle" v-model="languages[key]"></el-input>
+                <textarea v-model="languages[key]"></textarea>
               </li>
             </ul>
           </el-form-item>
@@ -477,21 +477,25 @@ export default {
 }
 .form-languages{
   list-style: none;
-  display: flex;
   li{
     background: rgba(64, 158, 255, .1);
     border: 1px solid rgba(64, 158, 255, .2);
     border-radius: 2px;
-    padding: 5px;
-    width: 260px;
-    margin-right: 8px;
-    display: flex;
+    padding: 10px;
+    margin-bottom: 8px;
     span{
       color: #409EFF;
-      margin-right: 5px;
+      display: block;
+      text-align: center;
     }
-    .el-input{
-      flex: 1;
+    textarea{
+      display: block;
+      width: 100%;
+      height: 80px;
+      border: 1px solid #ccc;
+      resize: none;
+      box-sizing: border-box;
+      padding: 10px;
     }
   }
 }
