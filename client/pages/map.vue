@@ -15,7 +15,7 @@ export default {
       parent_id: '',
       id: '',
       languages: {},
-      isEdit: true,
+      isEdit: false,
       isNew: true,
       node: null,
       activeName: 'web',
