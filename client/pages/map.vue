@@ -164,7 +164,8 @@ export default {
       this.isEdit = true;
       this.isNew = false;
     },
-    showDetail (data) {
+    showDetail (e, data) {
+      e.stopPropagation();
       let value = data.value;
       let key = data.full_key;
       let langs = JSON.parse(value);
@@ -191,7 +192,7 @@ export default {
         }
         {
           node.data.value
-          ? (<span class="value" title={node.data.value} on-click={ () => this.showDetail(node.data) } style="color:#39B54A"> 语言详情 </span>)
+          ? (<span class="value" title={node.data.value} on-click={ (e) => this.showDetail(e, node.data) } style="color:#39B54A"> 语言详情 </span>)
           : null
         }
         <span>
